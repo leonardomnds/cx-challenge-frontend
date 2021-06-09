@@ -1,9 +1,9 @@
-function App() {
-  return (
-    <div className="App">
-      Initial commit
-    </div>
-  );
-}
+import React from 'react';
+
+const App: React.FC = () => (
+  <div>
+    Initial commit
+  </div>
+);
 
 export default App;
