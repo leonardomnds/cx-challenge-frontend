@@ -72,7 +72,7 @@ const SignUp: React.FC = () => {
       <Content>
         <AnimationContainer>
           <img src={logoImg} alt="gobarber" />
-          <Form ref={formRef} onSubmit={handleSubmit}>
+          <Form ref={formRef} autoComplete="off" onSubmit={handleSubmit}>
             <h1>Faça seu cadastro</h1>
 
             <Input placeholder="Nome" name="name" icon={FiUser} />
