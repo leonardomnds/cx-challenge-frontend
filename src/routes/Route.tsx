@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import { useAuth } from '../hooks/Auth';
+import { useToast } from '../hooks/Toast';
 
 interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
@@ -17,12 +18,21 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }: RouteProps) => {
-  const { user } = useAuth();
+  const { token } = useAuth();
+  const { addToast } = useToast();
+
+  if (!token && isPrivate) {
+    addToast({
+      type: 'error',
+      title: 'Não foi possível se autenticar',
+      description: 'Verifique E-mail e senha e tente novamente.',
+    });
+  }
 
   return (
     <ReactDOMRoute
       {...rest}
-      render={() => (isPrivate === !!user ? <Component /> : <Redirect to={{ pathname: isPrivate ? '/' : '/dashboard' }} />)}
+      render={() => (isPrivate === !!token ? <Component /> : <Redirect to={{ pathname: isPrivate ? '/' : '/dashboard' }} />)}
     />
   );
 };

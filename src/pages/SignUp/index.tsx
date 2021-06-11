@@ -43,13 +43,22 @@ const SignUp: React.FC = () => {
 
       await schema.validate(data, { abortEarly: false });
 
-      await api.post('/users', data);
+      const response = await api.post('/users', data);
+
+      if (response.data.error) {
+        addToast({
+          type: 'error',
+          title: 'Erro no cadastro',
+          description: response.data.message,
+        });
+        return;
+      }
 
       history.push('/');
 
       addToast({
         type: 'success',
-        title: 'Cadastro realizado!',
+        title: 'Cadastro realizado',
         description: 'Você já pode fazer seu logon no sistema!',
       });
     } catch (err) {

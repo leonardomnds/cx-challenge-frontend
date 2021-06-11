@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { shade } from 'polished';
 
-import signInBackground from '../../assets/sign-in-background.jpg';
+import signInBackground from '../../assets/signin-background.jpg';
 
 export const Container = styled.div`
   height: 100vh;
@@ -61,10 +60,10 @@ export const AnimationContainer = styled.div`
       align-items: center;
       margin-top: 24px;
       text-decoration: none;
-      transition: color 0.2s;
+      transition: filter 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#FF9000')}
+        filter: brightness(0.9);
       }
 
       svg {

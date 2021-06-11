@@ -28,7 +28,14 @@ const ToastProvider: React.FC = ({ children }) => {
       id, type, title, description,
     };
 
-    setMessages((state) => [...state, toast]);
+    setMessages((state) => {
+      if (state.findIndex((m) => m.type === type
+      && m.title === title
+      && m.description === description) === -1) {
+        return [...state, toast];
+      }
+      return [...state];
+    });
   }, []);
 
   const removeToast = useCallback((id: string) => {
