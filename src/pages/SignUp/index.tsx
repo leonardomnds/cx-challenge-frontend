@@ -80,7 +80,7 @@ const SignUp: React.FC = () => {
       <Background />
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="gobarber" />
+          <img src={logoImg} alt="customerx" />
           <Form ref={formRef} autoComplete="off" onSubmit={handleSubmit}>
             <h1>Faça seu cadastro</h1>
 

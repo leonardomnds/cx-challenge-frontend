@@ -19,20 +19,44 @@ export const Content = styled.div`
     height: 30px;
   }
 
-  button {
-    background: #FF9000;
-    height: 40px;
-    border-radius: 5px;
-    border: 0;
-    padding: 0 5px;
-    color: #312E38;
-    width: 150px;
-    font-weight: 500;
-    transition: filter 0.2s;
+  div {
+    display: flex;
+    align-items: center;
 
-    &:hover {
-      filter: brightness(0.9);
+    button {
+      background: #FF9000;
+      height: 40px;
+      border-radius: 5px;
+      border: 0;
+      padding: 0 5px;
+      color: #312E38;
+      width: 150px;
+      font-weight: 500;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+    }
+
+    a {
+      margin-left: 20px;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+      svg {
+        margin-right: 8px;
+      }
     }
 
   }
+
 `;
