@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  FiAlertCircle, FiCheckCircle, FiInfo, FiXCircle,
+  FiAlertCircle, FiCheckCircle, FiInfo, FiXCircle, FiAlertTriangle,
 } from 'react-icons/fi';
 
 import { ToastMessage, useToast } from '../../../hooks/Toast';
@@ -15,6 +15,7 @@ interface ToastContainerProps {
 const icons = {
   info: <FiInfo size={24} />,
   error: <FiAlertCircle size={24} />,
+  warning: <FiAlertTriangle size={24} />,
   success: <FiCheckCircle size={24} />,
 };
 

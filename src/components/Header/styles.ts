@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-  border: red;
   height: 60px;
-  padding: 10px 0;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  background: #312E38;
 `;
 
 export const Content = styled.div`
+  height: 100%;
+
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 32px;

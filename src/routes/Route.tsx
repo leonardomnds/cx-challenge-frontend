@@ -32,7 +32,7 @@ const Route: React.FC<RouteProps> = ({
   return (
     <ReactDOMRoute
       {...rest}
-      render={() => (isPrivate === !!token ? <Component /> : <Redirect to={{ pathname: isPrivate ? '/' : '/dashboard' }} />)}
+      render={() => (isPrivate === !!token ? <Component /> : <Redirect to={{ pathname: isPrivate ? '/' : '/customers' }} />)}
     />
   );
 };

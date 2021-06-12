@@ -1,12 +1,9 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
   FiArrowLeft, FiUser, FiMail, FiLock,
 } from 'react-icons/fi';
-import { FormHandles } from '@unform/core';
-import { Form } from '@unform/web';
-import * as Yup from 'yup';
-import getValidationErrors from '../../utils/getValidationErrors';
+import validator from 'validator';
 import api from '../../services/ApiService';
 
 import { useToast } from '../../hooks/Toast';
@@ -20,60 +17,68 @@ import {
   Container, Content, AnimationContainer, Background,
 } from './styles';
 
-interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
-}
-
 const SignUp: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
 
-  const handleSubmit = useCallback(async (data: SignUpFormData) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSave = useCallback(async () => {
     try {
-      formRef.current?.setErrors({});
-
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Campo obrigatório'),
-        email: Yup.string().required('Campo obrigatório').email('E-mail inválido'),
-        password: Yup.string().min(6, 'Mínimo de 6 dígitos'),
-      });
-
-      await schema.validate(data, { abortEarly: false });
-
-      const response = await api.post('/users', data);
-
-      if (response.data.error) {
+      if (!name) {
         addToast({
-          type: 'error',
-          title: 'Erro no cadastro',
-          description: response.data.message,
+          type: 'warning',
+          title: 'Atenção',
+          description: 'O nome é um campo obrigatório.',
         });
-        return;
+      } else if (!email) {
+        addToast({
+          type: 'warning',
+          title: 'Atenção',
+          description: 'O e-mail é um campo obrigatório.',
+        });
+      } else if (!validator.isEmail(email)) {
+        addToast({
+          type: 'warning',
+          title: 'Atenção',
+          description: 'O e-mail informado é inválido.',
+        });
+      } else if (password.length < 6) {
+        addToast({
+          type: 'warning',
+          title: 'Atenção',
+          description: 'A senha deve ter pelo menos 6 dígitos.',
+        });
+      } else {
+        const response = await api.post('/users', { name, email, password });
+
+        if (response.data.error) {
+          addToast({
+            type: 'error',
+            title: 'Erro no cadastro',
+            description: response.data.message,
+          });
+          return;
+        }
+
+        history.push('/');
+
+        addToast({
+          type: 'success',
+          title: 'Cadastro realizado',
+          description: 'Você já pode fazer seu logon no sistema!',
+        });
       }
-
-      history.push('/');
-
-      addToast({
-        type: 'success',
-        title: 'Cadastro realizado',
-        description: 'Você já pode fazer seu logon no sistema!',
-      });
     } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        formRef.current?.setErrors(getValidationErrors(err));
-        return;
-      }
-
       addToast({
         type: 'error',
         title: 'Erro no cadastro',
         description: 'Ocorreu um erro ao fazer cadastro, tente novamente.',
       });
     }
-  }, [addToast, history]);
+  }, [addToast, history, name, email, password]);
 
   return (
     <Container>
@@ -81,15 +86,37 @@ const SignUp: React.FC = () => {
       <Content>
         <AnimationContainer>
           <img src={logoImg} alt="customerx" />
-          <Form ref={formRef} autoComplete="off" onSubmit={handleSubmit}>
+          <div>
             <h1>Faça seu cadastro</h1>
 
-            <Input placeholder="Nome" name="name" icon={FiUser} />
-            <Input placeholder="E-mail" name="email" icon={FiMail} />
-            <Input type="password" placeholder="Senha" name="password" icon={FiLock} />
+            <Input
+              value={name}
+              setValue={setName}
+              placeholder="Nome"
+              icon={FiUser}
+            />
+            <Input
+              value={email}
+              setValue={setEmail}
+              placeholder="E-mail"
+              icon={FiMail}
+            />
+            <Input
+              value={password}
+              setValue={setPassword}
+              type="password"
+              placeholder="Senha"
+              icon={FiLock}
+            />
 
-            <Button type="submit">Cadastrar</Button>
-          </Form>
+            <Button
+              type="submit"
+              onClick={handleSave}
+            >
+              Cadastrar
+
+            </Button>
+          </div>
 
           <Link to="/">
             <FiArrowLeft />

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
 
 interface ContainerProps {
-  type?: 'info' | 'success' | 'error';
+  type?: 'info' | 'success' | 'error' | 'warning';
   hasDescription: boolean;
 }
 
@@ -16,6 +16,10 @@ const toastTypeVariation = {
     color: #2E656A;
   `,
   error: css`
+    background: #FDDEDE;
+    color: #C53030;
+  `,
+  warning: css`
     background: #FDDEDE;
     color: #C53030;
   `,
