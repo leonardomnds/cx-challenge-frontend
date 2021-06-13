@@ -14,13 +14,13 @@ Para executar este sistema, siga os passos abaixo:
   git clone https://github.com/leonardomnds/cx-challenge-frontend.git
   ```
 
-1. Acesso a pasta do projeto
+2. Acesso a pasta do projeto
 
   ```shell
   cd cx-challenge-frontend
   ```
 
-1. Instale as dependências e execute o sistema
+3. Instale as dependências e execute o sistema
 
   ```shell
   yarn && yarn start
