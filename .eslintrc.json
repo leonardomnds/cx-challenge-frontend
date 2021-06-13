@@ -22,7 +22,6 @@
       "@typescript-eslint"
   ],
   "rules": {
-    "linebreak-style": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
@@ -37,6 +36,7 @@
     "no-extra-boolean-cast": "off",
     "no-restricted-globals": "off",
     "camelcase": "off",
+    "linebreak-style": ["error", "windows"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
