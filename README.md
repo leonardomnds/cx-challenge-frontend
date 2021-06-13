@@ -20,10 +20,16 @@ Para executar este sistema, siga os passos abaixo:
   cd cx-challenge-frontend
   ```
 
-3. Instale as dependências e execute o sistema
+3. Instale as dependências
 
   ```shell
-  yarn && yarn start
+  yarn
+  ```
+
+4. Execute o sistema
+
+  ```shell
+  yarn start
   ```
 
 A aplicação rodará na porta 9992, e pode ser acessada por [este link](http://localhost:9992).
