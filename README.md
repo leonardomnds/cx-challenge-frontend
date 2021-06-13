@@ -4,6 +4,10 @@ Este projeto faz parte do desafio de um processo seletivo para Desenvolvedor Ful
 
 A parte Backend que esse projeto consome, está disponível [neste repositório](https://github.com/leonardomnds/cx-challenge-backend), e é necessária para o funcionamento desta.
 
+## Requisitos
+
+- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+
 ## Como executar
 
 Para executar este sistema, siga os passos abaixo:
