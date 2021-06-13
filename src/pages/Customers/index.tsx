@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { FiPrinter } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 
@@ -9,16 +10,29 @@ import api from '../../services/ApiService';
 import { Container, LeftSection, RightSection } from './styles';
 
 import { Customer as CustomerType } from '../../interfaces/Customer';
-import { phoneFormat } from '../../utils/functions';
+import { convertBlobToFile, phoneFormat } from '../../utils/functions';
 
 const CustomerPage: React.FC = () => {
   const { addToast } = useToast();
   const history = useHistory();
   const [customers, setCustomers] = useState<CustomerType[]>([]);
+  const [generatingPdf, setGeneratingPdf] = useState(false);
 
   const handleNewClient = useCallback(() => {
     history.push('/customers/new');
   }, [history]);
+
+  const handleViewReport = useCallback(async () => {
+    setGeneratingPdf(true);
+    api.get('/reports/customers', { responseType: 'blob' }).then((response) => {
+      if (response.status === 200) {
+        const file = convertBlobToFile(response.data, `Relatório-${Date.now()}.pdf`);
+        const win = window.open(URL.createObjectURL(file), '_blank');
+        if (win) win.focus();
+      }
+    });
+    setGeneratingPdf(false);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -40,7 +54,19 @@ const CustomerPage: React.FC = () => {
     >
       <Container>
 
-        <h2>Relação de Clientes</h2>
+        <div>
+          <h2>Relação de Clientes</h2>
+          {customers.length > 0 && (
+          <button
+            type="button"
+            disabled={generatingPdf}
+            onClick={handleViewReport}
+          >
+            <FiPrinter size={24} />
+            Imprimir
+          </button>
+          )}
+        </div>
 
         {customers.map((c) => (
           <Link key={c.id} to={`/customers/edit/${c.id}`}>

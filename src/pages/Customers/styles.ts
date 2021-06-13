@@ -4,11 +4,48 @@ export const Container = styled.div`
   width: 100%;
   padding-bottom: 50px;
 
-  h2 {
-    color: #FFF;
-    margin: 20px 0;
-    font-size: 26px;
-    text-transform: capitalize;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      color: #FFF;
+      margin: 20px 0;
+      font-size: 26px;
+      text-transform: capitalize;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 4px 12px;
+      background: #FFF;
+      height: 40px;
+      width: 130px;
+      border-radius: 5px;
+      border: 0;
+      padding: 0 5px;
+      color: #312E38;
+      font-weight: 500;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      svg {
+        margin-right: 8px;
+      }
+
+    }
+
   }
 
   a {

@@ -49,3 +49,13 @@ export const isValidDate = (value: string): boolean => {
   const parsed = parse(value, 'dd/MM/yyyy', new Date());
   return isValid(parsed);
 };
+
+export const convertBlobToFile = (blob: Blob, fileName: string) => {
+  const b: any = blob;
+
+  b.lastModifiedDate = new Date();
+  b.name = fileName;
+
+  // Cast to a File() type
+  return <File>blob;
+};
