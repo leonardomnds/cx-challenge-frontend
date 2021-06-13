@@ -24,14 +24,14 @@ const SignIn: React.FC = () => {
 
   const handleLogin = useCallback(async () => {
     try {
-      if (!email.trim() || !password.trim()) {
+      if (!email.trim() || !password) {
         addToast({
           type: 'warning',
           title: 'Dados incompletos',
           description: 'Preencha e-mail e senha para continuar.',
         });
       } else {
-        await signIn({ email, password });
+        await signIn({ email: email.trim(), password });
         history.push('/customers');
       }
     } catch (err) {

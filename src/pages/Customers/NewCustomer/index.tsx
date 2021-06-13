@@ -86,8 +86,8 @@ const NewCustomer: React.FC = () => {
       });
     } else {
       const json = {
-        name,
-        email,
+        name: name.trim(),
+        email: email.trim(),
         phone: onlyNumbers(phone.trim()),
         createdAt: parse(createdAt, 'dd/MM/yyyy', new Date()) || new Date(),
       };
@@ -109,9 +109,9 @@ const NewCustomer: React.FC = () => {
       } else {
         const conPost = contacts.filter((c) => c.id.startsWith('new-')).map(async (c) => {
           await api.post(`/customers/${response.data.id}/contacts`, {
-            name: c.name,
-            email: c.email,
-            phone: onlyNumbers(c.phone),
+            name: c.name.trim(),
+            email: c.email.trim(),
+            phone: onlyNumbers(c.phone.trim()),
           });
         });
 
@@ -120,9 +120,9 @@ const NewCustomer: React.FC = () => {
 
           if (!!contact) {
             await api.put(`/customers/${response.data.id}/contacts/${id}`, {
-              name: contact.name,
-              email: contact.email,
-              phone: onlyNumbers(contact.phone),
+              name: contact.name.trim(),
+              email: contact.email.trim(),
+              phone: onlyNumbers(contact.phone.trim()),
             });
           }
         });
@@ -199,9 +199,9 @@ const NewCustomer: React.FC = () => {
       const savedContact: Contact = {
         id: contactId,
         customerId: customerId || '',
-        name: contactName,
-        email: contactEmail,
-        phone: contactPhone,
+        name: contactName.trim(),
+        email: contactEmail.trim(),
+        phone: contactPhone.trim(),
       };
 
       setContacts([...contacts.filter((c) => c.id !== savedContact.id), savedContact]);

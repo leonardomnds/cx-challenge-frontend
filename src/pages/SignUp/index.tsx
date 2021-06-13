@@ -45,14 +45,14 @@ const SignUp: React.FC = () => {
           title: 'Atenção',
           description: 'O e-mail informado é inválido.',
         });
-      } else if (password.trim().length < 6) {
+      } else if (password.length < 6) {
         addToast({
           type: 'warning',
           title: 'Atenção',
           description: 'A senha deve ter pelo menos 6 dígitos.',
         });
       } else {
-        const response = await api.post('/users', { name, email, password });
+        const response = await api.post('/users', { name: name.trim(), email: email.trim(), password });
 
         if (response.data.error) {
           addToast({
