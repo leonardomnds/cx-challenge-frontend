@@ -28,7 +28,7 @@ export default createGlobalStyle`
     font-weight: 500;
   }
 
-  .react-modal-overlay {
+  .modal-overlay {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
@@ -38,9 +38,10 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
   }
 
-  .react-modal-content {
+  .modal-content {
     width: 100%;
     max-width: 600px;
     color: #232129;
@@ -51,7 +52,7 @@ export default createGlobalStyle`
     border-radius: 6px;
   }
 
-  .react-modal-close {
+  .modal-close {
     position: absolute;
     right: 20px;
     top: 20px;

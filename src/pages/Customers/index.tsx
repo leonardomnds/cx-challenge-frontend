@@ -24,13 +24,15 @@ const CustomerPage: React.FC = () => {
 
   const handleViewReport = useCallback(async () => {
     setGeneratingPdf(true);
-    api.get('/reports/customers', { responseType: 'blob' }).then((response) => {
-      if (response.status === 200) {
-        const file = convertBlobToFile(response.data, `Relatório-${Date.now()}.pdf`);
-        const win = window.open(URL.createObjectURL(file), '_blank');
-        if (win) win.focus();
-      }
-    });
+
+    const response = await api.get('/reports/customers', { responseType: 'blob' });
+
+    if (response.status === 200) {
+      const file = convertBlobToFile(response.data, `Relatório-${Date.now()}.pdf`);
+      const win = window.open(URL.createObjectURL(file), '_blank');
+      if (win) win.focus();
+    }
+
     setGeneratingPdf(false);
   }, []);
 

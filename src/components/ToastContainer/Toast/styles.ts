@@ -20,8 +20,8 @@ const toastTypeVariation = {
     color: #C53030;
   `,
   warning: css`
-    background: #FDDEDE;
-    color: #C53030;
+    background: #fff9ae;
+    color: #a98600;
   `,
 };
 
@@ -31,6 +31,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   padding: 16px 30px 16px 16px;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 3;
 
   display: flex;
 

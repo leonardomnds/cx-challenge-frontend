@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
         <AnimationContainer>
           <img src={logoImg} alt="customerx" />
           <div>
-            <h1>Faça seu logon</h1>
+            <h1>Faça seu Login</h1>
 
             <Input
               value={email}
@@ -75,7 +75,7 @@ const SignIn: React.FC = () => {
 
           <Link to="/signup">
             <FiLogIn />
-            Criar conta
+            Não tem uma conta? Crie aqui.
           </Link>
 
         </AnimationContainer>

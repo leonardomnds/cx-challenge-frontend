@@ -68,7 +68,7 @@ const SignUp: React.FC = () => {
         addToast({
           type: 'success',
           title: 'Cadastro realizado',
-          description: 'Você já pode fazer seu logon no sistema!',
+          description: 'Você já pode fazer seu login no sistema!',
         });
       }
     } catch (err) {
@@ -110,17 +110,16 @@ const SignUp: React.FC = () => {
             />
 
             <Button
-              type="submit"
+              type="button"
               onClick={handleSave}
             >
               Cadastrar
-
             </Button>
           </div>
 
           <Link to="/">
             <FiArrowLeft />
-            Voltar para logon
+            Já tem uma conta? Faça login aqui.
           </Link>
         </AnimationContainer>
       </Content>

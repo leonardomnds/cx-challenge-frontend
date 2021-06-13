@@ -17,13 +17,13 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   <Modal
     isOpen={isOpen}
     onRequestClose={onCancel}
-    overlayClassName="react-modal-overlay"
-    className="react-modal-content"
+    overlayClassName="modal-overlay"
+    className="modal-content"
   >
 
     <button
       type="button"
-      className="react-modal-close"
+      className="modal-close"
       onClick={onCancel}
     >
       <MdClose size={24} />
