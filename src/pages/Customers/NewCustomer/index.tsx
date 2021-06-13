@@ -54,31 +54,31 @@ const NewCustomer: React.FC = () => {
   const formatDate = (value: string) => setCreatedAt(dateFormat(value));
 
   const handleSave = useCallback(async () => {
-    if (!name) {
+    if (!name.trim()) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'O nome é um campo obrigatório.',
       });
-    } else if (!!createdAt && !isValidDate(createdAt)) {
+    } else if (!!createdAt.trim() && !isValidDate(createdAt.trim())) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'A data informada é inválida.',
       });
-    } else if (!email) {
+    } else if (!email.trim()) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'O e-mail é um campo obrigatório.',
       });
-    } else if (!validator.isEmail(email)) {
+    } else if (!validator.isEmail(email.trim())) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'O e-mail informado é inválido.',
       });
-    } else if (!phone) {
+    } else if (!phone.trim()) {
       addToast({
         type: 'warning',
         title: 'Atenção',
@@ -88,7 +88,7 @@ const NewCustomer: React.FC = () => {
       const json = {
         name,
         email,
-        phone: onlyNumbers(phone),
+        phone: onlyNumbers(phone.trim()),
         createdAt: parse(createdAt, 'dd/MM/yyyy', new Date()) || new Date(),
       };
 
@@ -171,25 +171,25 @@ const NewCustomer: React.FC = () => {
   }, [clearContact]);
 
   const handleSaveContact = useCallback(() => {
-    if (!contactName) {
+    if (!contactName.trim()) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'O nome do contato é um campo obrigatório.',
       });
-    } else if (!contactEmail) {
+    } else if (!contactEmail.trim()) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'O e-mail do contato é um campo obrigatório.',
       });
-    } else if (!validator.isEmail(contactEmail)) {
+    } else if (!validator.isEmail(contactEmail.trim())) {
       addToast({
         type: 'warning',
         title: 'Atenção',
         description: 'O e-mail informado é inválido.',
       });
-    } else if (!contactPhone) {
+    } else if (!contactPhone.trim()) {
       addToast({
         type: 'warning',
         title: 'Atenção',

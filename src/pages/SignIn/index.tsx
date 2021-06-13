@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
 
   const handleLogin = useCallback(async () => {
     try {
-      if (!email || !password) {
+      if (!email.trim() || !password.trim()) {
         addToast({
           type: 'warning',
           title: 'Dados incompletos',

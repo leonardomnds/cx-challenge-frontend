@@ -27,25 +27,25 @@ const SignUp: React.FC = () => {
 
   const handleSave = useCallback(async () => {
     try {
-      if (!name) {
+      if (!name.trim()) {
         addToast({
           type: 'warning',
           title: 'Atenção',
           description: 'O nome é um campo obrigatório.',
         });
-      } else if (!email) {
+      } else if (!email.trim()) {
         addToast({
           type: 'warning',
           title: 'Atenção',
           description: 'O e-mail é um campo obrigatório.',
         });
-      } else if (!validator.isEmail(email)) {
+      } else if (!validator.isEmail(email.trim())) {
         addToast({
           type: 'warning',
           title: 'Atenção',
           description: 'O e-mail informado é inválido.',
         });
-      } else if (password.length < 6) {
+      } else if (password.trim().length < 6) {
         addToast({
           type: 'warning',
           title: 'Atenção',
