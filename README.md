@@ -27,3 +27,8 @@ Para executar este sistema, siga os passos abaixo:
   ```
 
 A aplicação rodará na porta 9992, e pode ser acessada por [este link](http://localhost:9992).
+
+Pode-se fazer o login com os dados abaixo, ou criar um novo usuário caso preferir.
+
+- **E-mail:** admin@admin.com
+- **Senha:** 123456
